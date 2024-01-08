@@ -1,5 +1,6 @@
 package lk.purna.LoanDeapartment.controller;
 
+import lk.purna.LoanDeapartment.controller.exception.LoanTypeNotFoundException;
 import lk.purna.LoanDeapartment.controller.request.LoanTypeRequest;
 import lk.purna.LoanDeapartment.controller.response.IdResponse;
 import lk.purna.LoanDeapartment.controller.response.LoanResponse;
@@ -28,7 +29,7 @@ public class LoanTypeController {
     }
 
     @GetMapping("/loantypes/{loantype-id}")
-    public LoanTypeResponse getSpecific(@PathVariable("loantype-id")Long loanTypeId,@RequestBody LoanTypeRequest loanTypeRequest){
+    public LoanTypeResponse getSpecific(@PathVariable("loantype-id")Long loanTypeId,@RequestBody LoanTypeRequest loanTypeRequest)throws LoanTypeNotFoundException {
 
         System.out.println("get specific loan type");
 

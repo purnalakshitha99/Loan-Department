@@ -1,5 +1,6 @@
 package lk.purna.LoanDeapartment.service.impl;
 
+import lk.purna.LoanDeapartment.controller.exception.LoanTypeNotFoundException;
 import lk.purna.LoanDeapartment.controller.model.Loan;
 import lk.purna.LoanDeapartment.controller.model.LoanType;
 import lk.purna.LoanDeapartment.controller.repository.LoanTypeRepository;
@@ -43,23 +44,24 @@ public class LoanTypeServiceImpl implements LoanTypeService {
 
     //get loanTypes
 
-    public LoanTypeResponse getSpecific(Long loanTypeId,LoanTypeRequest loanTypeRequest){
+    public LoanTypeResponse getSpecific(Long loanTypeId,LoanTypeRequest loanTypeRequest)throws LoanTypeNotFoundException {
 
         Optional<LoanType> loanTypeOptional = loanTypeRepository.findById(loanTypeId);
 
         LoanTypeResponse loanTypeResponse = new LoanTypeResponse();
 
-        if (loanTypeOptional.isPresent()){
+        if (!loanTypeOptional.isPresent()){
 
-            LoanType loanType = loanTypeOptional.get();
+            throw new LoanTypeNotFoundException("Loan Type Not Found "+loanTypeId);
 
-            loanTypeResponse.setId(loanType.getId());
-            loanTypeResponse.setType(loanType.getType());
-
-           return loanTypeResponse;
         }
 
-        return null;
+        LoanType loanType = loanTypeOptional.get();
+
+        loanTypeResponse.setId(loanType.getId());
+        loanTypeResponse.setType(loanType.getType());
+
+        return loanTypeResponse;
     }
 
 
@@ -96,12 +98,10 @@ public class LoanTypeServiceImpl implements LoanTypeService {
 
             loanTypeRepository.save(loanType);
 
-            LoanTypeResponseBuilder loanTypeResponseBuilder = LoanTypeResponseBuilder.builder()
+            return LoanTypeResponseBuilder.builder()
                     .id(loanTypeId)
                     .type(loanType.getType())
                     .build();
-
-            return loanTypeResponseBuilder;
         }
 
         return null;

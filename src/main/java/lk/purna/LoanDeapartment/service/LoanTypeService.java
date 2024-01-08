@@ -1,5 +1,6 @@
 package lk.purna.LoanDeapartment.service;
 
+import lk.purna.LoanDeapartment.controller.exception.LoanTypeNotFoundException;
 import lk.purna.LoanDeapartment.controller.request.LoanTypeRequest;
 import lk.purna.LoanDeapartment.controller.response.IdResponse;
 import lk.purna.LoanDeapartment.controller.response.LoanResponse;
@@ -12,7 +13,7 @@ public interface LoanTypeService {
 
     LoanTypeResponse create(LoanTypeRequest loanTypeRequest);
 
-    LoanTypeResponse getSpecific(Long loanTypeId,LoanTypeRequest loanTypeRequest);
+    LoanTypeResponse getSpecific(Long loanTypeId,LoanTypeRequest loanTypeRequest)throws LoanTypeNotFoundException;
 
     List<LoanTypeResponseBuilder> getAll();
 
