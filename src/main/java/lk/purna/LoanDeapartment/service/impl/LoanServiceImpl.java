@@ -37,7 +37,7 @@ public class LoanServiceImpl implements LoanService {
 
         loan.setAmount(loanRequest.getAmount());
         loan.setPeriod(loanRequest.getPeriod());
-        loan.setCustomer(customer);
+        loan.setCustomer(customer); //loan model ekata ara foregin key customer ge ID ek set karanwa //customerOption eken gtt Id eka
 
         loanRepository.save(loan);
 
