@@ -19,5 +19,5 @@ public interface LoanTypeService {
 
     IdResponse delete(Long loanTypeId);
 
-    LoanTypeResponseBuilder update(Long loanTypeId,LoanTypeRequest loanTypeRequest);
+    LoanTypeResponseBuilder update(Long loanTypeId,LoanTypeRequest loanTypeRequest)throws LoanTypeNotFoundException;
 }

@@ -52,7 +52,7 @@ public class LoanTypeController {
 
 
     @PutMapping("/loantypes/{loantype-id}")
-    public LoanTypeResponseBuilder update(@PathVariable("loantype-id")Long loanTypeId,@RequestBody LoanTypeRequest loanTypeRequest){
+    public LoanTypeResponseBuilder update(@PathVariable("loantype-id")Long loanTypeId,@RequestBody LoanTypeRequest loanTypeRequest)throws LoanTypeNotFoundException{
         System.out.println("update loanType");
 
         return loanTypeService.update(loanTypeId,loanTypeRequest);

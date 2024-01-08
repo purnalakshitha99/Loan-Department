@@ -86,24 +86,23 @@ public class LoanTypeServiceImpl implements LoanTypeService {
 
     }
 
-    public LoanTypeResponseBuilder update(Long loanTypeId,LoanTypeRequest loanTypeRequest){
+    public LoanTypeResponseBuilder update(Long loanTypeId,LoanTypeRequest loanTypeRequest)throws LoanTypeNotFoundException{
 
         Optional<LoanType> loanTypeOptional = loanTypeRepository.findById(loanTypeId);
 
-        if (loanTypeOptional.isPresent()){
+        if (!loanTypeOptional.isPresent()){
+            throw new LoanTypeNotFoundException("LoanType not Found "+loanTypeId);
 
-            LoanType loanType = loanTypeOptional.get();
-
-            loanType.setType(loanTypeRequest.getType());
-
-            loanTypeRepository.save(loanType);
-
-            return LoanTypeResponseBuilder.builder()
-                    .id(loanTypeId)
-                    .type(loanType.getType())
-                    .build();
         }
+        LoanType loanType = loanTypeOptional.get();
 
-        return null;
+        loanType.setType(loanTypeRequest.getType());
+
+        loanTypeRepository.save(loanType);
+
+        return LoanTypeResponseBuilder.builder()
+                .id(loanTypeId)
+                .type(loanType.getType())
+                .build();
     }
 }
