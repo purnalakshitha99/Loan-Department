@@ -1,4 +1,7 @@
 package lk.purna.LoanDeapartment.controller.repository;
 
-public interface LoanRepository {
+import lk.purna.LoanDeapartment.controller.model.Loan;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface LoanRepository extends JpaRepository<Loan,Long> {
 }

@@ -15,4 +15,7 @@ public class Loan {
     private Double amount;
     private Integer period;
 
+    @ManyToOne
+    private Customer customer;
+
 }
