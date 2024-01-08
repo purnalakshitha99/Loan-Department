@@ -1,5 +1,6 @@
 package lk.purna.LoanDeapartment.controller;
 
+import lk.purna.LoanDeapartment.controller.exception.CustomerNotFoundException;
 import lk.purna.LoanDeapartment.controller.request.LoanRequest;
 import lk.purna.LoanDeapartment.controller.response.LoanResponse;
 import lk.purna.LoanDeapartment.service.LoanService;
@@ -14,11 +15,11 @@ public class LoanController {
 
 
     @PostMapping("/customers/{customer-id}/loans")
-    public LoanResponse create(@PathVariable("customer-id") Long customerId, @RequestBody LoanRequest loanRequest){
+    public LoanResponse create(@PathVariable("customer-id") Long customerId, @RequestBody LoanRequest loanRequest)throws CustomerNotFoundException {
 
         System.out.println("loan create");
 
-       
+
         return loanService.create(customerId,loanRequest);
     }
 }

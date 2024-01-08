@@ -1,5 +1,6 @@
 package lk.purna.LoanDeapartment.service.impl;
 
+import lk.purna.LoanDeapartment.controller.exception.CustomerNotFoundException;
 import lk.purna.LoanDeapartment.controller.model.Customer;
 import lk.purna.LoanDeapartment.controller.model.Loan;
 import lk.purna.LoanDeapartment.controller.repository.CustomerRepository;
@@ -21,13 +22,13 @@ public class LoanServiceImpl implements LoanService {
     private final CustomerRepository customerRepository;
 
 
-    public LoanResponse create(Long customerId, LoanRequest loanRequest){
+    public LoanResponse create(Long customerId, LoanRequest loanRequest)throws CustomerNotFoundException {
 
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
 
         if (! customerOptional.isPresent()){
+            throw new CustomerNotFoundException("you enterd customer is not having database");
 
-            System.out.println("customer not found");
         }
 
         Customer customer = customerOptional.get();
