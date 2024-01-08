@@ -22,4 +22,6 @@ public class LoanController {
 
         return loanService.create(customerId,loanRequest);
     }
+
+
 }
