@@ -1,5 +1,6 @@
 package lk.purna.LoanDeapartment.service.impl;
 
+import lk.purna.LoanDeapartment.controller.exception.NotNameException;
 import lk.purna.LoanDeapartment.controller.model.Customer;
 import lk.purna.LoanDeapartment.controller.model.Loan;
 import lk.purna.LoanDeapartment.controller.repository.CustomerRepository;
@@ -12,12 +13,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class CustomerLoanServiceImpl implements CustomerLoanService {
+public class CustomerLoanServiceImpl implements CustomerLoanService{
 
     private CustomerRepository customerRepository;
     private LoanRepository loanRepository;
 
-    public CustomerLoanResponse createCustomerLoan(CustomerLoanRequest customerLoanRequest){
+    public CustomerLoanResponse createCustomerLoan(CustomerLoanRequest customerLoanRequest)throws NotNameException {
 
         Customer customer = new Customer();
         Loan loan = new Loan();
@@ -26,6 +27,8 @@ public class CustomerLoanServiceImpl implements CustomerLoanService {
         customer.setName(customerLoanRequest.getName());
 
         customerRepository.save(customer);
+
+        error();
 
         loan.setAmount(customerLoanRequest.getAmount());
         loan.setPeriod(customerLoanRequest.getPeriod());
@@ -47,5 +50,11 @@ public class CustomerLoanServiceImpl implements CustomerLoanService {
         return customerLoanResponse;
 
 
+    }
+
+
+    private void error()throws NotNameException{
+
+        throw new NotNameException("Not Name Exception");
     }
 }

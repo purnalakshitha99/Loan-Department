@@ -1,5 +1,6 @@
 package lk.purna.LoanDeapartment.controller;
 
+import lk.purna.LoanDeapartment.controller.exception.NotNameException;
 import lk.purna.LoanDeapartment.controller.request.CustomerLoanRequest;
 import lk.purna.LoanDeapartment.controller.response.CustomerLoanResponse;
 import lk.purna.LoanDeapartment.service.CustomerLoanService;
@@ -18,7 +19,7 @@ public class CustomerLoanController {
 
 
     @PostMapping("/customers/loans")
-    public CustomerLoanResponse createCustomerLoan(@RequestBody CustomerLoanRequest customerLoanRequest){
+    public CustomerLoanResponse createCustomerLoan(@RequestBody CustomerLoanRequest customerLoanRequest)throws NotNameException {
 
         System.out.println("customer loan crate");
 
