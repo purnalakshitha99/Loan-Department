@@ -19,7 +19,7 @@ public class CustomerLoanServiceImpl implements CustomerLoanService{
     private CustomerRepository customerRepository;
     private LoanRepository loanRepository;
 
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class)//transaction eke rollback eka nisa customer wa save wenneth na loan ek save wenneth na,,mulin thiyeana state ekatamene yanne  //meka comment uanama roll back wenne ne try eka athule error() method eken passe tika arenna ita kalin tika run weyi custoemr ge table eke customer wa save weeee,namuth loan ek save nowe mokda eka thiyenne try eka athule  error() ekata psse tika run wen nathi nisa,,
     public CustomerLoanResponse createCustomerLoan(CustomerLoanRequest customerLoanRequest)throws NotNameException {
 
         Customer customer = new Customer();
@@ -55,7 +55,7 @@ public class CustomerLoanServiceImpl implements CustomerLoanService{
 //            return customerLoanResponse;
         }catch (NotNameException exception){
 
-            throw new NotNameException(" not saving loan ");
+//            throw new NotNameException(" not saving loan ");
         }
 
         return null;
