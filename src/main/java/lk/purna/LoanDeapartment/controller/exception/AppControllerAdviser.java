@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class AppControllerAdviser {
 
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY) //status code ek change krl pennanwa response ekedi
-    @ExceptionHandler({CustomerNotFoundException.class, LoanTypeNotFoundException.class}) //customerNotFoundException class eken ena exception hadle krnn //thawa class walin ena ewata denn puluwan methana "," dada class tika denn one
+    @ExceptionHandler({CustomerNotFoundException.class, LoanTypeNotFoundException.class,NotNameException.class}) //customerNotFoundException class eken ena exception hadle krnn //thawa class walin ena ewata denn puluwan methana "," dada class tika denn one
     public CustomErrorResponse handleNFException(Exception exception){
         System.out.println(exception.getMessage());
         CustomErrorResponse customErrorResponse = new CustomErrorResponse();
