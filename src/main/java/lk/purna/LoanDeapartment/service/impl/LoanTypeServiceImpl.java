@@ -74,9 +74,16 @@ public class LoanTypeServiceImpl implements LoanTypeService {
     }
 
 
-    public IdResponse delete(Long loanTypeId){
+    public IdResponse delete(Long loanTypeId)throws LoanTypeNotFoundException{
 
+        Optional<LoanType> loanTypeOptional = loanTypeRepository.findById(loanTypeId);
+
+        if (!loanTypeOptional.isPresent()){
+            throw new LoanTypeNotFoundException("Loan Type Not Found");
+        }
         loanTypeRepository.deleteById(loanTypeId);
+
+
 
         IdResponse idResponse = new IdResponse();
 

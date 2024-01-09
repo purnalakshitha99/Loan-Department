@@ -1,6 +1,7 @@
 package lk.purna.LoanDeapartment.controller;
 
 import lk.purna.LoanDeapartment.controller.exception.LoanTypeNotFoundException;
+import lk.purna.LoanDeapartment.controller.model.Loan;
 import lk.purna.LoanDeapartment.controller.request.LoanTypeRequest;
 import lk.purna.LoanDeapartment.controller.response.IdResponse;
 import lk.purna.LoanDeapartment.controller.response.LoanResponse;
@@ -44,7 +45,7 @@ public class LoanTypeController {
     }
 
     @DeleteMapping("/loantypes/{loantypes-id}")
-    public IdResponse delete(@PathVariable("loantypes-id")Long loanTypeId){
+    public IdResponse delete(@PathVariable("loantypes-id")Long loanTypeId)throws LoanTypeNotFoundException{
 
 
      return    loanTypeService.delete(loanTypeId);
@@ -57,4 +58,7 @@ public class LoanTypeController {
 
         return loanTypeService.update(loanTypeId,loanTypeRequest);
     }
+
+
+
 }

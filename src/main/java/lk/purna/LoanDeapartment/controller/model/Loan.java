@@ -3,6 +3,8 @@ package lk.purna.LoanDeapartment.controller.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "loans")
@@ -17,5 +19,9 @@ public class Loan {
 
     @ManyToOne
     private Customer customer;
+
+
+    @ManyToOne
+    private LoanType loanType;
 
 }
